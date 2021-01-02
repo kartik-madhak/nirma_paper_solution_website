@@ -7,6 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    Welcome User
+    
+    <form  action="/logout" method="post">
+        @csrf
+    <button type="submit">HERE</button>
+    </form>
+
+    {{auth()->user()->name}}
+    
+    
 </body>
 </html>
