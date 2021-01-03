@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
+    <!-- Credits to https://github.com/NOSS-itnu/pyp -->
     <div class="container text-center">
 
           <div class="active-cyan-4 mb-3">
