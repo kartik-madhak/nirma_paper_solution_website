@@ -1,20 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-    <form  action="/logout" method="post">
-        @csrf
-    <button type="submit">HERE</button>
-    </form>
+@extends('layouts.app')
+@section('content')
+  
+    <div class="container"> 
+      
+         {{-- <div class="active-cyan-4 mb-3">
+          <input class="form-control" type="text" id="myInputTextField" placeholder="Search" aria-label="Search">
+        </div> --}}
 
-    {{auth()->user()->name}}
-    
-    
-</body>
-</html>
+         <table id="data-table" class="display">  
+              <thead>  
+                   <tr>  
+                        <th>Link</th>  
+                        <th>Paper Name</th> 
+                        <th>Course Name</th>
+                        <th>Course Code</th> 
+                        <th>Paper Year</th>   
+                   </tr>  
+              </thead>  
+         </table>  
+    </div>  
+
+@endsection
