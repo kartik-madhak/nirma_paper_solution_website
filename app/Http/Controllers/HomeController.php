@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\logged_in_user;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 class HomeController extends Controller
 {
     /**
@@ -25,8 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $count=logged_in_user::query()->count();
-
-
-        return view('home',compact('count'));
+    
+        $users=User::all();
+        return view('home',compact('count','users'));
+        
     }
 }

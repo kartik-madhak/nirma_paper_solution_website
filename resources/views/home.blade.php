@@ -19,9 +19,28 @@
                    </tr>
               </thead>
          </table>
-    <div>
-     {{$count}}
-    </div>
+    
+     
+     <div class="container text-center">
+     <table class="display table table-striped table-dark table-responsive m-auto">
+          <thead>
+               <tr>
+                    <th>Name</th>
+               </tr>
+          </thead>
+          <tbody>
+                @foreach($users as $user)
+               <tr>
+                    @if($user->isOnline())
+                    <td>{{$user->name}}</td>
+                    @endif
+                    
+                    
+               </tr>
+     @endforeach
+     
+          </tbody>
+     </table>
     </div>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
