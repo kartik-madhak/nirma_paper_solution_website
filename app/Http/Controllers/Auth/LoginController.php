@@ -23,58 +23,6 @@ class LoginController extends Controller
     */
 
     use AuthenticatesUsers;
-    
-
-    protected function sendLoginResponse(Request $request)
-    {
-
-
-        $check=logged_in_user::query()->where('user_id',auth()->user()->id)->exists();
-
-        if(!$check)
-        {
-            $user=new logged_in_user();
-            $user->user_id=auth()->user()->id;
-            $user->save();
-        }
-       
-
-        
-        $request->session()->regenerate();
-
-        $this->clearLoginAttempts($request);
-
-        if ($response = $this->authenticated($request, $this->guard()->user())) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-                    ? new JsonResponse([], 204)
-                    : redirect()->intended($this->redirectPath());
-    }
-
-
-    public function logout(Request $request)
-    {
-        // $user=new logged_in_user();
-
-       logged_in_user::where('user_id','=',auth()->user()->id)->delete();
-
-
-        $this->guard()->logout();
-
-        $request->session()->invalidate();
-
-        $request->session()->regenerateToken();
-
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect('/');
-    }
 
     /**
      * Where to redirect users after login.

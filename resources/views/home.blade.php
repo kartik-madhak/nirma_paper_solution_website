@@ -1,56 +1,62 @@
 @extends('layouts.app')
 @section('content')
 
-    <!-- Credits to https://github.com/NOSS-itnu/pyp -->
     <div class="container text-center">
 
-          <div class="active-cyan-4 mb-3">
-          <input class="form-control" type="text" id="myInputTextField" placeholder="Search" aria-label="Search">
+        <div class="active-cyan-4 mb-3">
+            <form action="">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="search" placeholder="Search" value="{{$search}}">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" type="button">Search</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
-         <table id="data-table" class="display table table-striped table-dark table-responsive m-auto">
-              <thead>
-                   <tr>
-                        <th>Link</th>
-                        <th>Paper Name</th>
-                        <th>Course Name</th>
-                        <th>Course Code</th>
-                        <th>Paper Year</th>
-                   </tr>
-              </thead>
-         </table>
-    
-     
-     <div class="container text-center">
-     <table class="display table table-striped table-dark table-responsive m-auto">
-          <thead>
-               <tr>
-                    <th>Name</th>
-               </tr>
-          </thead>
-          <tbody>
-                @foreach($users as $user)
-               <tr>
-                    @if($user->isOnline())
+        <div class="table-responsive">
+
+        <table id="data-table" class="display table table-striped table-dark">
+            <thead>
+            <tr>
+                <th>Link</th>
+                <th>Paper Name</th>
+                <th>Course Name</th>
+                <th>Course Code</th>
+                <th>Paper Year</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach($papers as $paper)
+                    <tr>
+                        <td><a href="{{$paper->url}}">Download here</a></td>
+                        <td>{{$paper->paper_name}}</td>
+                        <td>{{$paper->name}}</td>
+                        <td>{{$paper->code}}</td>
+                        <td>{{$paper->year}}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+
+        </table>
+            <div class="text-center d-inline-flex">
+                {{ $papers->links() }}
+            </div>
+        </div>
+
+        <table class="table table-dark table-striped m-auto" style="width: fit-content">
+            <thead>
+                <th>
+                    Users online in the last 1 minute
+                </th>
+            </thead>
+            @foreach($users as $user)
+            @if ($user->isOnline())
+                <tr>
                     <td>{{$user->name}}</td>
-                    @endif
-                    
-                    
-               </tr>
-     @endforeach
-     
-          </tbody>
-     </table>
+                </tr>
+            @endif
+            @endforeach
+        </table>
     </div>
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
-
-    <!--  Datatable js -->
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.23/datatables.min.js"></script>
-
-    <script>url = "{{asset('js/Data.json')}}" </script>
-
-    <!-- Credits to https://github.com/NOSS-itnu/pyp -->
-    <script type="text/javascript" src="{{asset('js/Data.js')}}"></script>
-
 @endsection

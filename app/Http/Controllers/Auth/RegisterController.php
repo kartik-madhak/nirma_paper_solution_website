@@ -41,26 +41,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-    public function register(Request $request)
-    {
-        
-        $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-        $user2=new logged_in_user();
-        $user2->user_id=$user->id;
-        $user2->save();
-        $this->guard()->login($user);
-
-        if ($response = $this->registered($request, $user)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-                    ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath());
-    }
-
     /**
      * Get a validator for an incoming registration request.
      *
