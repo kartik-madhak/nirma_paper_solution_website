@@ -21,9 +21,11 @@
             <tr>
                 <th>Link</th>
                 <th>Paper Name</th>
+                <th>Answers Link</th>
                 <th>Course Name</th>
                 <th>Course Code</th>
                 <th>Paper Year</th>
+                
             </tr>
             </thead>
             <tbody>
@@ -31,6 +33,7 @@
                     <tr>
                         <td><a href="{{$paper->url}}">Download here</a></td>
                         <td>{{$paper->paper_name}}</td>
+                        <td><a href="/questionpaper/{{$paper->id}}">Answers</a></td>
                         <td>{{$paper->name}}</td>
                         <td>{{$paper->code}}</td>
                         <td>{{$paper->year}}</td>

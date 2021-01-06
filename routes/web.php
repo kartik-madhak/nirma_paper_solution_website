@@ -20,4 +20,7 @@ Route::get('/',[App\Http\Controllers\HomeController::class,'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Search on the home page
-Route::get("/search",'SearchController@index');
+//Route::get("/search",'HomeController@index');
+
+//Route to each question paper
+Route::get('/questionpaper/{id}',[App\Http\Controllers\QuestionPaperController::class,'index']);

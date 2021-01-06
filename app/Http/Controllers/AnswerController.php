@@ -2,28 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\QuestionPaper;
-use Illuminate\Http\Request;
 use App\Models\Answer;
-class QuestionPaperController extends Controller
+use Illuminate\Http\Request;
+
+class AnswerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$questionPaper)
+    public function index()
     {
-      
-       // dd($answers);
-       
-       $questionPaper=QuestionPaper::query()->where('id',$questionPaper)->firstOrFail();
-       
-       $answers=Answer::query()->where('question_paper_id',$questionPaper->id)->get();
-       //dd($answers[0]);
-      // $answers=$questionPaper->answers();
-        return view('questionpaper.answerlinks',compact('answers','questionPaper'));
-
+        
     }
 
     /**
@@ -50,10 +41,10 @@ class QuestionPaperController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\QuestionPaper  $questionPaper
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(QuestionPaper $questionPaper)
+    public function show(Answer $answer)
     {
         //
     }
@@ -61,10 +52,10 @@ class QuestionPaperController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\QuestionPaper  $questionPaper
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(QuestionPaper $questionPaper)
+    public function edit(Answer $answer)
     {
         //
     }
@@ -73,10 +64,10 @@ class QuestionPaperController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\QuestionPaper  $questionPaper
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, QuestionPaper $questionPaper)
+    public function update(Request $request, Answer $answer)
     {
         //
     }
@@ -84,10 +75,10 @@ class QuestionPaperController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\QuestionPaper  $questionPaper
+     * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QuestionPaper $questionPaper)
+    public function destroy(Answer $answer)
     {
         //
     }
