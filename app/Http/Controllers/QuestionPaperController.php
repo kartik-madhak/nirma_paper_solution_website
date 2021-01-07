@@ -12,18 +12,11 @@ class QuestionPaperController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$questionPaper)
+    public function index(Request $request, QuestionPaper $questionPaper)
     {
-      
-       // dd($answers);
-       
-       $questionPaper=QuestionPaper::query()->where('id',$questionPaper)->firstOrFail();
-       
-       $answers=Answer::query()->where('question_paper_id',$questionPaper->id)->get();
-       //dd($answers[0]);
-      // $answers=$questionPaper->answers();
+        $answers = $questionPaper->answers()->get();
+//        $answers=Answer::query()->where('question_paper_id',$questionPaper->id)->get();
         return view('questionpaper.answerlinks',compact('answers','questionPaper'));
-
     }
 
     /**

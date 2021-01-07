@@ -31,7 +31,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
-   
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -44,4 +44,5 @@ class User extends Authenticatable
     {
             return Cache::has('user-is-online'.$this->id);
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Answer;
+use App\Models\QuestionPaper;
 use Illuminate\Http\Request;
 
 class AnswerController extends Controller
@@ -14,7 +15,7 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -22,9 +23,9 @@ class AnswerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(QuestionPaper $questionPaper)
     {
-        //
+        return view('answer.addForm', compact('questionPaper'));
     }
 
     /**

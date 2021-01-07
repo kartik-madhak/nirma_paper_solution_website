@@ -13,4 +13,5 @@ class QuestionPaper extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
 }

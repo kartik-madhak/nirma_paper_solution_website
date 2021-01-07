@@ -47,4 +47,9 @@ class HomeController extends Controller
         }
         return view('home',compact('users', 'papers', 'search'));
     }
+
+    public function test(Request $request)
+    {
+        dd($request->input('content'));
+    }
 }

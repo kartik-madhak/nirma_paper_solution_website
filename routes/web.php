@@ -19,8 +19,11 @@ Auth::routes();
 Route::get('/',[App\Http\Controllers\HomeController::class,'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Search on the home page
-//Route::get("/search",'HomeController@index');
-
 //Route to each question paper
-Route::get('/questionpaper/{id}',[App\Http\Controllers\QuestionPaperController::class,'index']);
+Route::get('/question-paper/{questionPaper}',[App\Http\Controllers\QuestionPaperController::class,'index']);
+
+//Route to show form for adding answer to a question paper
+Route::get('/question-paper/answer/add/{questionPaper}', [\App\Http\Controllers\AnswerController::class, 'create'])->middleware('auth'); //Must be logged in
+
+//For debugging and testing
+Route::post('/test', [\App\Http\Controllers\HomeController::class, 'test']);
