@@ -18,7 +18,7 @@
 
                 <tr>
                     <td>
-                        <a href="/question-paper/answer/{{$answer->id}}">{{$answer->question_number . $answer->sub_question_character}}</a>
+                        <a href="{{url()->current() . '/answer/' . $answer->id}}">{{$answer->question_number . ' ' . $answer->sub_question_character}}</a>
                     </td>
                 </tr>
             @empty
@@ -38,7 +38,6 @@
     <style>
         a {
             text-decoration: none !important;
-
         }
     </style>
 @endsection

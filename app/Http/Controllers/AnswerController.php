@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Answer;
 use App\Models\QuestionPaper;
 use Illuminate\Http\Request;
+use Symfony\Component\Routing\Route;
 
 class AnswerController extends Controller
 {
@@ -34,9 +35,22 @@ class AnswerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, QuestionPaper $questionPaper)
     {
-        //
+        $request->validate([
+            'question_number' => 'required|min:0|max:20',
+            'question_alphabet' => 'required|alpha|size:1'
+                           ]);
+
+        $content = $request->input('content');
+        $question_number = $request->input('question_number');
+        $question_alphabet = $request->input('question_alphabet');
+        $questionPaper->answers()->create([
+            'user_id' => auth()->user()->id,
+            'question_number' => $question_number,
+            'sub_question_character' => $question_alphabet,
+            'content' => $content]);
+        return redirect()->route('home');
     }
 
     /**
@@ -45,9 +59,9 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Answer $answer)
+    public function show(QuestionPaper $questionPaper, Answer $answer)
     {
-        //
+        return view('answer.show', compact('answer'));
     }
 
     /**
