@@ -59,9 +59,13 @@ class AnswerController extends Controller
      * @param  \App\Models\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(QuestionPaper $questionPaper, Answer $answer)
+    public function show(QuestionPaper $questionPaper, $question_no, $question_char)
     {
-        return view('answer.show', compact('answer'));
+        $answers = $questionPaper->answers()->where('question_number', $question_no)->where('sub_question_character', $question_char)->get();
+
+//        dd($answers);
+
+        return view('answer.show', compact('answers'));
     }
 
     /**

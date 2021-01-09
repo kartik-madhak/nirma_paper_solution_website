@@ -14,12 +14,10 @@
                 Available answers
             </th>
             </thead>
-            @forelse($answers as $answer)
-
+            @forelse($answers_number_and_char as $a_n_c)
                 <tr>
                     <td>
-                        {{dd($answer)}}
-                        <a href="{{url()->current() . '/answer/' . $answer->id}}">{{$answer->question_number . ' ' . $answer->sub_question_character}}</a>
+                        <a href="{{url()->current() . '/answer/' . $a_n_c->question_number . '/' . $a_n_c->sub_question_character}} ">{{$a_n_c->question_number . ' ' . $a_n_c->sub_question_character}}</a>
                     </td>
                 </tr>
             @empty
@@ -28,7 +26,7 @@
                 </tr>
             @endforelse
         </table>
-    
+
         <form action="/question-paper/{{$questionPaper->id}}/answer-add">
             <button class="btn btn-outline-success m-3">Add Answer</button>
         </form>

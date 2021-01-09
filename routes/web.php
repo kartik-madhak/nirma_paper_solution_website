@@ -23,7 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/question-paper/{questionPaper}',[App\Http\Controllers\QuestionPaperController::class,'index']);
 
 //Route to view answer
-Route::get('/question-paper/{questionPaper}/answer/{answer}', [\App\Http\Controllers\AnswerController::class, 'show']); // Login not required to view the answer
+Route::get('/question-paper/{questionPaper}/answer/{question_no}/{question_char}', [\App\Http\Controllers\AnswerController::class, 'show']); // Login not required to view the answer
 
 //Route to show form for adding answer to a question paper
 Route::get('/question-paper/{questionPaper}/answer-add', [\App\Http\Controllers\AnswerController::class, 'create'])->middleware('auth'); //Must be logged in

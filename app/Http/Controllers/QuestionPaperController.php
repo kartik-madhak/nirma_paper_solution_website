@@ -14,22 +14,9 @@ class QuestionPaperController extends Controller
      */
     public function index(Request $request, QuestionPaper $questionPaper)
     {
-        $answers = $questionPaper->answers()->get();
-        $dict=[];
-        $answers2=array();
-        foreach($answers as $answer)
-        {
-            if($dict[$answer->question_number.$answer->sub_question_character]==1)
-            {   
-              array_push($answers2,$answer);  
-            }
-           $dict[strval($answer->question_number.$answer->sub_question_character)]=1;
+        $answers_number_and_char = $questionPaper->answers()->select('question_number', 'sub_question_character')->groupBy('question_number', 'sub_question_character')->get();
 
-          
-        }
-       //  dd($answers->all());
-            
-        return view('questionpaper.answerlinks',compact('answers2','questionPaper'));
+        return view('questionpaper.answerlinks',compact('answers_number_and_char','questionPaper'));
     }
 
     /**

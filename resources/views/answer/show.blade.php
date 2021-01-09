@@ -15,7 +15,18 @@
 @endsection
 
 @section('content')
-    <div class="container w-50 bg-light rounded-lg p-3">
-        {!! $answer->content !!}
+    <div class="container w-50">
+        @forelse($answers as $answer)
+            <div class="rounded-lg p-3 bg-light mt-2">
+                {!! $answer->content !!}
+                <div class="footer text-small text-black-50">
+                    {{ $answer->user->name . ' at ' . $answer->created_at }}
+                </div>
+            </div>
+        @empty
+            <div class="rounded-lg p-3">
+                There are no answers at this moment
+            </div>
+        @endforelse
     </div>
 @endsection
