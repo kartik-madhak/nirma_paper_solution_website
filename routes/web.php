@@ -26,10 +26,10 @@ Route::get('/question-paper/{questionPaper}',[App\Http\Controllers\QuestionPaper
 Route::get('/question-paper/{questionPaper}/answer/{answer}', [\App\Http\Controllers\AnswerController::class, 'show']); // Login not required to view the answer
 
 //Route to show form for adding answer to a question paper
-Route::get('/question-paper/{questionPaper}/answer/add/{questionPaper}', [\App\Http\Controllers\AnswerController::class, 'create'])->middleware('auth'); //Must be logged in
+Route::get('/question-paper/{questionPaper}/answer-add', [\App\Http\Controllers\AnswerController::class, 'create'])->middleware('auth'); //Must be logged in
 
 //Route for adding answer to a question paper
-Route::post('/question-paper/{questionPaper}/answer/add/{questionPaper}', [\App\Http\Controllers\AnswerController::class, 'store'])->middleware('auth'); //Must be logged in
+Route::post('/question-paper/{questionPaper}/answer-add', [\App\Http\Controllers\AnswerController::class, 'store'])->middleware('auth'); //Must be logged in
 
 //For debugging and testing
 Route::post('/test', [\App\Http\Controllers\HomeController::class, 'test']);

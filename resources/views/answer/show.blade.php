@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-    <div class="container w-75">
+    <div class="container w-50 bg-light rounded-lg p-3">
         {!! $answer->content !!}
     </div>
 @endsection
