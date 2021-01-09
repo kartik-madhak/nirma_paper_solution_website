@@ -18,6 +18,7 @@
 
                 <tr>
                     <td>
+                        {{dd($answer)}}
                         <a href="{{url()->current() . '/answer/' . $answer->id}}">{{$answer->question_number . ' ' . $answer->sub_question_character}}</a>
                     </td>
                 </tr>
@@ -27,8 +28,8 @@
                 </tr>
             @endforelse
         </table>
-
-        <form action="/question-paper/answer/add/{{$questionPaper->id}}">
+    
+        <form action="/question-paper/{{$questionPaper->id}}/answer-add">
             <button class="btn btn-outline-success m-3">Add Answer</button>
         </form>
     </div>
