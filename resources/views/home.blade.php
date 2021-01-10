@@ -15,7 +15,7 @@
         </div>
 
         <div class="table-responsive">
-
+        
         <table id="data-table" class="display table table-striped table-dark">
             <thead>
             <tr>
@@ -56,7 +56,7 @@
             @foreach($users as $user)
             @if ($user->isOnline())
                 <tr>
-                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
                 </tr>
             @endif
             @endforeach
