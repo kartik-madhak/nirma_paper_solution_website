@@ -22,6 +22,7 @@ class CreateAnswersTable extends Migration
             $table->char('sub_question_character',1);
             
             $table->text('content');
+            
             $table->timestamps();
         });
     }

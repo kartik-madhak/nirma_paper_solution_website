@@ -20,6 +20,7 @@
                         <a href="{{url()->current() . '/answer/' . $a_n_c->question_number . '/' . $a_n_c->sub_question_character}} ">{{$a_n_c->question_number . ' ' . $a_n_c->sub_question_character}}</a>
                     </td>
                 </tr>
+                @livewire('post-votes', ['answer_id' => $a_n_c->question_number])
             @empty
                 <tr>
                     <td>There are no answers at the moment. Add yourself!</td>

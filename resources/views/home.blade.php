@@ -56,7 +56,7 @@
             @foreach($users as $user)
             @if ($user->isOnline())
                 <tr>
-                    <td>{{$user->email}}</td>
+                    <td>{{$user->name}}</td>
                 </tr>
             @endif
             @endforeach
