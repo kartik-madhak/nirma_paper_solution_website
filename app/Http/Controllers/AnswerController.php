@@ -81,9 +81,11 @@ class AnswerController extends Controller
         $likes = $user->likes()->whereIn('answer_id', $answers->pluck('id'))->get();
 
         $likesIndex = 0;
+//        dd($likes);
+        $count = $likes->count();
         if ($likes->isNotEmpty())
         foreach ($answers as $answer){
-            if ($answer->id == $likes[$likesIndex]->answer_id)
+            if ($likesIndex < $count && $answer->id == $likes[$likesIndex]->answer_id)
             {
                 $answer['likedByUser'] = true;
                 $likesIndex++;

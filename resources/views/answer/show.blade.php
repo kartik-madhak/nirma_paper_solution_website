@@ -30,7 +30,7 @@
                     <span class="material-icons clickEvent {{$answer->likedByUser ? 'text-primary':''}}" id="{{ $answer->id }}">
                         thumb_up
                     </span>
-                    <span id="likes">
+                    <span id="{{'likeNumber' . $answer->id}}">
                         {{ $answer->likes }}
                     </span>
                 </div>
@@ -55,10 +55,10 @@
                 const obj = $(this);
                 let pp = $(this).attr("id");
                 $.post("/answer/" + pp + "/like",{_token: '{{csrf_token()}}'},
-                    function (data) {
-                    console.log(data);
+                    function (answer) {
+                        // console.log(answer);
                         obj.toggleClass("text-primary");
-                        $("#likes").html(data);
+                        $("#likeNumber" + answer.id).html(answer.likes);
                     }).fail(function(data) {
                     console.log(data);
                 });

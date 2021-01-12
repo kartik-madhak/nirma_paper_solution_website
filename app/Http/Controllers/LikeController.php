@@ -43,7 +43,7 @@ class LikeController extends Controller
             $answer->likes--;
         }
         $answer->save();
-        return $answer->likes;
+        return $answer;
     }
 
     /**
