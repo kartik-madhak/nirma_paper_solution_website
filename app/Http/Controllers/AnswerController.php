@@ -93,6 +93,7 @@ class AnswerController extends Controller
             else $answer['likedByUser'] = false;
         }
 
+        $answers=$answers->sortByDesc('likes');
         return view('answer.show', compact('answers'));
     }
 

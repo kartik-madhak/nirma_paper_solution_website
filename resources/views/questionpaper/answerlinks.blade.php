@@ -2,7 +2,7 @@
 @section('content')
     <div class="container text-center text-light">
         <div style="font-size: 28px;">
-            {{$questionPaper->name}}
+            {{$questionPaper->code}}
         </div>
         <div>
             <a href="{{$questionPaper->url}}">Download link</a>

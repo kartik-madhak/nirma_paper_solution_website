@@ -11,10 +11,10 @@ class UpdateAnswersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() 
     {
         Schema::table('answers', function (Blueprint $table) {
-            $table->unsignedBigInteger('likes');
+            $table->bigInteger('likes');
         });
     }
 
