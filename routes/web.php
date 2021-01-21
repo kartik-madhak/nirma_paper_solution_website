@@ -36,3 +36,4 @@ Route::post('/test', [\App\Http\Controllers\HomeController::class, 'test']);
 
 //Like answer through ajax request
 Route::post('/answer/{answer}/like', [\App\Http\Controllers\LikeController::class, 'create']);
+
