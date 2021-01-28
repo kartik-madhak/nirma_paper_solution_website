@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="container text-center text-light">
         <div style="font-size: 28px;">
             {{$questionPaper->code}}
