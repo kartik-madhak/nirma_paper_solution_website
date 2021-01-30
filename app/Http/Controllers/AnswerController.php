@@ -94,7 +94,8 @@ class AnswerController extends Controller
         }
 
         $answers=$answers->sortByDesc('likes');
-        return view('answer.show', compact('answers'));
+        $answers_number_and_char = $questionPaper->answers()->select('question_number', 'sub_question_character')->groupBy('question_number', 'sub_question_character')->get();
+        return view('answer.show', compact('answers', 'answers_number_and_char', 'questionPaper'));
     }
 
     /**
