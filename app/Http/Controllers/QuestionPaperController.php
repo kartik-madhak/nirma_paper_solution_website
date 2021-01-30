@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\QuestionPaper;
+use Facade\FlareClient\View;
 use Illuminate\Http\Request;
 use App\Models\Answer;
 class QuestionPaperController extends Controller
@@ -10,13 +11,14 @@ class QuestionPaperController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request, QuestionPaper $questionPaper)
     {
         $answers_number_and_char = $questionPaper->answers()->select('question_number', 'sub_question_character')->groupBy('question_number', 'sub_question_character')->get();
 
-        return view('questionpaper.answerlinks',compact('answers_number_and_char','questionPaper'));
+        $similar = QuestionPaper::query()->where('name', 'like', '%'.$questionPaper->name.'%')->get();
+
+        return view('questionpaper.answerlinks',compact('answers_number_and_char','questionPaper', 'similar'));
     }
 
     /**

@@ -19,14 +19,14 @@
                 @endforeach
             </table>
         </div>
-    <div class="text-center col-lg-10 mt-3 ">
+    <div class="text-center col-lg-10 mt-3">
 
         <div class="active-cyan-4 mb-3">
             <form action="">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" name="search" placeholder="Search" value="{{$search}}">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-success" type="button">Search</button>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
                     </div>
                 </div>
             </form>

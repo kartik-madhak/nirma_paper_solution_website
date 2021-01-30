@@ -49,6 +49,17 @@
 
 @section('content')
     <div class="container-fluid">
+        <div class="text-center text-light">
+        <div style="font-size: xx-large;">
+            {{$questionPaper->code}}
+        </div>
+        <div style="font-size: x-large;" class="d-inline">
+            {{ $questionPaper->name }} - {{$questionPaper->year}}
+        </div>
+        <div class="d-inline">
+            (<a href="{{$questionPaper->url}}">Download link</a>)
+        </div>
+        </div>
         <div class="row">
             <div class="col-md-2 text-light border-right mobile-hidden"
                  style="background-color: #2D2D2D; border-color: #404345!important;">

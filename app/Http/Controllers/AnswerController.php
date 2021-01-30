@@ -34,14 +34,15 @@ class AnswerController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request, QuestionPaper $questionPaper)
     {
         $request->validate(
             [
                 'question_number' => 'required|min:0|max:20',
-                'question_alphabet' => 'required|alpha|size:1'
+                'question_alphabet' => 'required|alpha|size:1',
+                'content' => 'required'
             ]
         );
 
@@ -57,7 +58,7 @@ class AnswerController extends Controller
                 'likes' => 0
             ]
         );
-        return redirect()->route('home');
+        return redirect()->route('answer.show', ['questionPaper' => $questionPaper, 'question_no' => $question_number, 'question_char' => $question_alphabet]);
     }
 
     /**
