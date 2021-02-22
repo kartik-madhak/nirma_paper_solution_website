@@ -1,6 +1,10 @@
 <?php
 
+
+use App\Mail\ContactMail;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +41,12 @@ Route::post('/test', [\App\Http\Controllers\HomeController::class, 'test']);
 //Like answer through ajax request
 Route::post('/answer/{answer}/like', [\App\Http\Controllers\LikeController::class, 'create']);
 
+//Feedback Form
+Route::get('/contact',function(){
+    return view('contact');
+});
+//Email
+Route::post('/contact',function(Request $request){
+    Mail::send(new ContactMail($request));
+    return view('/contact')->with('message','Thank you for your feedback');
+});
