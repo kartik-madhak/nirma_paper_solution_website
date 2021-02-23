@@ -48,5 +48,5 @@ Route::get('/contact',function(){
 //Email
 Route::post('/contact',function(Request $request){
     Mail::send(new ContactMail($request));
-    return view('/contact')->with('message','Thank you for your feedback');
+    return view('/contact')->with('message','We have received your response, Thank You for your feedback.');
 });
