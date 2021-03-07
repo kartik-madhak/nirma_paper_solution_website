@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Middleware\AdminMiddleWare;
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,11 +24,16 @@ Auth::routes();
 Route::get('/',[App\Http\Controllers\HomeController::class,'index']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+//Admin special Routes
+Route::get('/admin',[App\Http\Controllers\AdminController::class,'index'])->middleware(AdminMiddleWare::class);
+
+
 //Route to each question paper
-Route::get('/question-paper/{questionPaper}',[App\Http\Controllers\QuestionPaperController::class,'index']);
+Route::get('/question-paper/{questionPaper}',[App\Http\Controllers\QuestionPaperController::class,'index'])->middleware('auth');
 
 //Route to view answer
-Route::get('/question-paper/{questionPaper}/answer/{question_no}/{question_char}', [\App\Http\Controllers\AnswerController::class, 'show'])->name('answer.show'); // Login not required to view the answer
+Route::get('/question-paper/{questionPaper}/answer/{question_no}/{question_char}', [\App\Http\Controllers\AnswerController::class, 'show'])->name('answer.show')->middleware('auth'); // Login not required to view the answer
 
 //Route to show form for adding answer to a question paper
 Route::get('/question-paper/{questionPaper}/answer-add', [\App\Http\Controllers\AnswerController::class, 'create'])->middleware('auth'); //Must be logged in
