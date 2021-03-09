@@ -58,7 +58,9 @@ Route::post('/contact',function(Request $request){
 });
 
 //Update and Delete Answers
-Route::patch('/answers/{answer}/edit',[\App\Http\Controllers\AnswerController::class,'edit']);
+Route::patch('/answer/{answer}/edit',[\App\Http\Controllers\AnswerController::class,'edit']);
 
-Route::delete('/answers/{answer}/delete',[\App\Http\Controllers\AnswerController::class,'destroy']);
+Route::get('/answer/{answer}/edit',[\App\Http\Controllers\AnswerController::class,'showEditForm']);
+
+Route::delete('/answer/{answer}/delete',[\App\Http\Controllers\AnswerController::class,'destroy']);
 

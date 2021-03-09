@@ -58,7 +58,14 @@ class AnswerController extends Controller
                 'likes' => 0
             ]
         );
-        return redirect()->route('answer.show', ['questionPaper' => $questionPaper, 'question_no' => $question_number, 'question_char' => $question_alphabet]);
+        return redirect()->route(
+            'answer.show',
+            [
+                'questionPaper' => $questionPaper,
+                'question_no' => $question_number,
+                'question_char' => $question_alphabet
+            ]
+        );
     }
 
     /**
@@ -84,33 +91,45 @@ class AnswerController extends Controller
         $likesIndex = 0;
 //        dd($likes);
         $count = $likes->count();
-        if ($likes->isNotEmpty())
-        foreach ($answers as $answer){
-            if ($likesIndex < $count && $answer->id == $likes[$likesIndex]->answer_id)
-            {
-                $answer['likedByUser'] = true;
-                $likesIndex++;
+        if ($likes->isNotEmpty()) {
+            foreach ($answers as $answer) {
+                if ($likesIndex < $count && $answer->id == $likes[$likesIndex]->answer_id) {
+                    $answer['likedByUser'] = true;
+                    $likesIndex++;
+                } else {
+                    $answer['likedByUser'] = false;
+                }
             }
-            else $answer['likedByUser'] = false;
         }
 
-        $answers=$answers->sortByDesc('likes');
-        $answers_number_and_char = $questionPaper->answers()->select('question_number', 'sub_question_character')->groupBy('question_number', 'sub_question_character')->get();
-        return view('answer.show', compact('answers', 'answers_number_and_char', 'questionPaper','user'));
+        $answers = $answers->sortByDesc('likes');
+        $answers_number_and_char = $questionPaper->answers()->select(
+            'question_number',
+            'sub_question_character'
+        )->groupBy('question_number', 'sub_question_character')->get();
+        return view('answer.show', compact('answers', 'answers_number_and_char', 'questionPaper', 'user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param \App\Models\Answer $answer
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Answer $answer)
+    public function edit(Request $request, Answer $answer)
     {
-        //
+        $answer->content = $request->input('content');
+        $answer->save();
+        $questionPaper = $answer->questionPaper()->get();
 
+        return redirect()->route(
+            'answer.show',
+            [
+                'questionPaper' => $questionPaper[0]->id,
+                'question_no' => $answer->question_number,
+                'question_char' => $answer->sub_question_character,
+                '#' . $answer->id
+            ]
+        );
+    }
 
+    public function showEditForm(Answer $answer)
+    {
+        return view('answer.update', compact('answer'));
     }
 
     /**
@@ -135,9 +154,7 @@ class AnswerController extends Controller
      */
     public function destroy(Answer $answer)
     {
-        //
-        $ans=$answer->delete();
+        $ans = $answer->delete();
         return redirect()->back();
-
     }
 }

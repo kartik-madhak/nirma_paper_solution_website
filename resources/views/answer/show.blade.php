@@ -50,15 +50,15 @@
 @section('content')
     <div class="container-fluid">
         <div class="text-center text-light">
-        <div style="font-size: xx-large;">
-            {{$questionPaper->code}}
-        </div>
-        <div style="font-size: x-large;" class="d-inline">
-            {{ $questionPaper->name }} - {{$questionPaper->year}}
-        </div>
-        <div class="d-inline">
-            (<a href="{{$questionPaper->url}}">Download link</a>)
-        </div>
+            <div style="font-size: xx-large;">
+                {{$questionPaper->code}}
+            </div>
+            <div style="font-size: x-large;" class="d-inline">
+                {{ $questionPaper->name }} - {{$questionPaper->year}}
+            </div>
+            <div class="d-inline">
+                (<a href="{{$questionPaper->url}}">Download link</a>)
+            </div>
         </div>
         <div class="row">
             <div class="col-md-2 text-light border-right mobile-hidden"
@@ -105,28 +105,42 @@
                                 <div>
                                     {!! $answer->content !!}
                                 </div>
-                                <div class="footer float-right" style="font-size: 13px">
-                                    {{ $answer->user->name . ' at ' . $answer->created_at }}
+                                <div class="footer mt-5" style="font-size: 13px">
+                                    <div class="float-left">
+
+                                        @if($user->name==$answer->user->name || $user->email==env('WEBSITE_OWNER_EMAIL'))
+                                            <form action="/answer/{{$answer->id}}/edit" class="d-inline" method="get">
+                                                @csrf
+                                                <button class="btn btn-link text-white-50"
+                                                        style="text-decoration: none">Edit
+                                                </button>
+                                            </form>
+                                            <form action="/answer/{{$answer->id}}/delete" method="post"
+                                                  class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-link text-white-50"
+                                                        style="text-decoration: none">Delete
+                                                </button>
+                                            </form>
+                                            <button  class="btn btn-link text-white-50"
+                                                     style="text-decoration: none"
+                                                onclick="prompt('Press Ctrl + C, then Enter to copy to clipboard',
+                                                    '{{url()->current() . '#' . $answer->id}}')">Share</button>
+
+                                        @endif
+
+                                    </div>
+
+                                    <div class="float-right">
+                                        {{ $answer->user->name . ' at ' . $answer->created_at }}
+                                    </div>
                                 </div>
-
-                                @if($user->name==$answer->user->name || $user->email==env('WEBSITE_OWNER_EMAIL'))
-                                    <form action="/answers/{{$answer->id}}/edit">
-                                        <button class="btn btn-light">EDIT</button>
-                                    </form>
-                                    <br>
-                                    <form action="/answers/{{$answer->id}}/delete" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="btn btn-danger">DELETE</button>
-                                    </form>
-
-
-                                @endif
 
                             </div>
                         </div>
                     @empty
-                        <div class="rounded-lg p-3">
+                        <div class="text-light p-5 text-center">
                             There are no answers at this moment
                         </div>
                     @endforelse
