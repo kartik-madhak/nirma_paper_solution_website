@@ -108,6 +108,21 @@
                                 <div class="footer float-right" style="font-size: 13px">
                                     {{ $answer->user->name . ' at ' . $answer->created_at }}
                                 </div>
+
+                                @if($user->name==$answer->user->name || $user->email==env('WEBSITE_OWNER_EMAIL'))
+                                    <form action="/answers/{{$answer->id}}/edit">
+                                        <button class="btn btn-light">EDIT</button>
+                                    </form>
+                                    <br>
+                                    <form action="/answers/{{$answer->id}}/delete" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger">DELETE</button>
+                                    </form>
+
+
+                                @endif
+
                             </div>
                         </div>
                     @empty
@@ -134,6 +149,7 @@
                                 <a href="#{{ $answer->id }}">
                                     {{ $answer->user->name }}
                                 </a>
+
                             </div>
                         @endforeach
                     </div>

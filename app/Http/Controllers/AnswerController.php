@@ -96,7 +96,7 @@ class AnswerController extends Controller
 
         $answers=$answers->sortByDesc('likes');
         $answers_number_and_char = $questionPaper->answers()->select('question_number', 'sub_question_character')->groupBy('question_number', 'sub_question_character')->get();
-        return view('answer.show', compact('answers', 'answers_number_and_char', 'questionPaper'));
+        return view('answer.show', compact('answers', 'answers_number_and_char', 'questionPaper','user'));
     }
 
     /**
@@ -109,6 +109,8 @@ class AnswerController extends Controller
     public function edit(Answer $answer)
     {
         //
+
+
     }
 
     /**
@@ -134,5 +136,8 @@ class AnswerController extends Controller
     public function destroy(Answer $answer)
     {
         //
+        $ans=$answer->delete();
+        return redirect()->back();
+
     }
 }

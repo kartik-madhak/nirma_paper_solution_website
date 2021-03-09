@@ -56,3 +56,9 @@ Route::post('/contact',function(Request $request){
     Mail::send(new ContactMail($request));
     return view('/contact')->with('message','We have received your response, Thank You for your feedback.');
 });
+
+//Update and Delete Answers
+Route::patch('/answers/{answer}/edit',[\App\Http\Controllers\AnswerController::class,'edit']);
+
+Route::delete('/answers/{answer}/delete',[\App\Http\Controllers\AnswerController::class,'destroy']);
+
