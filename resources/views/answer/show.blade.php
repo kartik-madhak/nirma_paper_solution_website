@@ -192,7 +192,9 @@
                     console.log(data);
                 });
             });
+
         });
+
     </script>
     {{--    <script>--}}
     {{--    $(function(){--}}

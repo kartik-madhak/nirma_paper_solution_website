@@ -37,21 +37,22 @@
             {
                 extraPlugins: 'mathjax',
                 mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
-                height: 320
+                height: 320,
+                filebrowserBrowseUrl: ''
             });
 
-    </script>
-    <script>
-        var images = document.getElementsByTagName("img");
-        var i;
+        CKEDITOR.on( 'instanceReady', function( evt ) {
+            evt.editor.dataProcessor.htmlFilter.addRules( {
+                elements: {
+                    img: function(el) {
+                        el.addClass('img-thumbnail');
+                    }
+                }
+            });
+        });
 
-        for(i = 0; i < images.length; i++) {
-            images[i].className += " img-thumbnail";
-        }
+        let editor = CKEDITOR.replace('ckfinder');
+        CKFinder.setupCKEditor(editor);
 
-    </script>
-    <script>
-        let editor = CKEDITOR.replace( 'ckfinder' );
-        CKFinder.setupCKEditor( editor );
     </script>
 @endsection
