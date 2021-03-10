@@ -2,6 +2,8 @@
 
 @section('head')
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+    <script src="{{asset('ckfinder/ckfinder.js')}}"></script>
+
 @endsection
 
 @section('content')
@@ -37,5 +39,19 @@
                 mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
                 height: 320
             });
+
+    </script>
+    <script>
+        var images = document.getElementsByTagName("img");
+        var i;
+
+        for(i = 0; i < images.length; i++) {
+            images[i].className += " img-thumbnail";
+        }
+
+    </script>
+    <script>
+        let editor = CKEDITOR.replace( 'ckfinder' );
+        CKFinder.setupCKEditor( editor );
     </script>
 @endsection
