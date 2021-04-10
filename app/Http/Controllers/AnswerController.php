@@ -29,6 +29,13 @@ class AnswerController extends Controller
         return view('answer.addForm', compact('questionPaper'));
     }
 
+    public function userAnswer()
+    {
+        $answers = Answer::query()->select()->where('user_id', auth()->user()->id)->orderByDesc('updated_at')->get();
+        $user = auth()->user();
+        return view('answer.userAnswers', compact('answers', 'user'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *

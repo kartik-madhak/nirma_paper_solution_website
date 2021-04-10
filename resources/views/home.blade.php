@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mt-3">
             <div class="col-3 text-center">
-                <table class="table table-dark table-striped rounded-lg">
+                <table class="table table-dark table-striped">
                     <thead>
                     <th>
                         Users online in the last 1 minute
@@ -34,7 +34,7 @@
                     </form>
                 </div>
 
-                <div class="table-responsive" style="border-radius: 18px">
+                <div class="table-responsive">
 
                     <table id="data-table" class="display table table-striped table-dark table-hover">
                         <thead>

@@ -1,8 +1,10 @@
 <?php
 
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Middleware\AdminMiddleWare;
 use App\Mail\ContactMail;
+use App\Models\Answer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -33,24 +35,25 @@ Route::get('/admin',[App\Http\Controllers\AdminController::class,'index'])->midd
 Route::get('/question-paper/{questionPaper}',[App\Http\Controllers\QuestionPaperController::class,'index'])->middleware('auth');
 
 //Route to view answer
-Route::get('/question-paper/{questionPaper}/answer/{question_no}/{question_char}', [\App\Http\Controllers\AnswerController::class, 'show'])->name('answer.show')->middleware('auth'); // Login not required to view the answer
+Route::get('/question-paper/{questionPaper}/answer/{question_no}/{question_char}', [AnswerController::class, 'show'])->name('answer.show')->middleware('auth'); // Login not required to view the answer
 
 //Route to show form for adding answer to a question paper
-Route::get('/question-paper/{questionPaper}/answer-add', [\App\Http\Controllers\AnswerController::class, 'create'])->middleware('auth'); //Must be logged in
+Route::get('/question-paper/{questionPaper}/answer-add', [AnswerController::class, 'create'])->middleware('auth'); //Must be logged in
 
 //Route for adding answer to a question paper
-Route::post('/question-paper/{questionPaper}/answer-add', [\App\Http\Controllers\AnswerController::class, 'store'])->middleware('auth'); //Must be logged in
+Route::post('/question-paper/{questionPaper}/answer-add', [AnswerController::class, 'store'])->middleware('auth'); //Must be logged in
 
 //For debugging and testing
 Route::post('/test', [\App\Http\Controllers\HomeController::class, 'test']);
 
 //Like answer through ajax request
-Route::post('/answer/{answer}/like', [\App\Http\Controllers\LikeController::class, 'create']);
+Route::post('/answer/{answer}/like', [\App\Http\Controllers\LikeController::class, 'create'])->middleware('auth');
 
 //Feedback Form
 Route::get('/contact',function(){
-    return view('contact');
+    return view('contact', compact('likes'));
 });
+
 //Email
 Route::post('/contact',function(Request $request){
     Mail::send(new ContactMail($request));
@@ -58,9 +61,13 @@ Route::post('/contact',function(Request $request){
 });
 
 //Update and Delete Answers
-Route::patch('/answer/{answer}/edit',[\App\Http\Controllers\AnswerController::class,'edit']);
+Route::patch('/answer/{answer}/edit',[AnswerController::class,'edit'])->middleware('auth');
 
-Route::get('/answer/{answer}/edit',[\App\Http\Controllers\AnswerController::class,'showEditForm']);
+//Show answer edit form
+Route::get('/answer/{answer}/edit',[AnswerController::class,'showEditForm'])->middleware('auth');
 
-Route::delete('/answer/{answer}/delete',[\App\Http\Controllers\AnswerController::class,'destroy']);
+//Delete answer
+Route::delete('/answer/{answer}/delete',[AnswerController::class,'destroy'])->middleware('auth');
 
+//User's answers
+Route::get('/my-answers', [AnswerController::class, 'userAnswer'])->middleware('auth');
