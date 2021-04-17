@@ -23,6 +23,12 @@
     {{-- Custom Styles--}}
     <link rel="stylesheet" href="{{asset('css/custom.css')}}">
 
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
     @yield('head')
 </head>
 <body>
@@ -40,12 +46,13 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                    <a class="nav-link" href="/contact">Feedback</a>
+                    <a class="nav-link" href="/contact">Contact us</a>
                 </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
+
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -63,10 +70,19 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
                             {{ Auth::user()->name }}
+                            <span class="badge badge-pill badge-success" data-toggle="tooltip" data-placement="bottom" title="Likes">
+                                {{ Auth::user()->getLikes() }}
+                            </span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                            <a href="/my-answers" class="dropdown-item">
+                                My Answers
+                            </a>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

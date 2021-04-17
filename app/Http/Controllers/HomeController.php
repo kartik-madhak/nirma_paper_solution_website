@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\QuestionPaper;
 use Illuminate\Http\Request;
 use App\Models\logged_in_user;
@@ -31,6 +32,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $users=User::all();
+//        $likes = Answer::query()->where('user_id', auth()->user()->id)->sum('likes');
 
         $search =  $request->input('search');
         if($search!=""){
@@ -45,7 +47,7 @@ class HomeController extends Controller
         else{
             $papers = QuestionPaper::paginate($this->paginatePapers);
         }
-        return view('home',compact('users', 'papers', 'search'));
+        return view('home', compact('users', 'papers', 'search'));
     }
 
     public function test(Request $request)
