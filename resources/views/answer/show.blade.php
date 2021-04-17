@@ -59,6 +59,9 @@
             <div class="d-inline">
                 (<a href="{{$questionPaper->url}}">Download link</a>)
             </div>
+        <form action="/question-paper/{{$questionPaper->id}}/answer-add/{{$question_no}}/{{$question_char}}">
+            <button class="btn btn-outline-success m-3">Add Answer</button>
+        </form>
         </div>
         <div class="row">
             <div class="col-md-2 text-light border-right mobile-hidden"

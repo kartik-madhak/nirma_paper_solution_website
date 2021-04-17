@@ -1,13 +1,73 @@
 body {
     background-color: #2D2D2D;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
-.card{
+.card {
     background-color: var(--dark);
     color: var(--white);
 }
-.opacity-50
-{
+
+.opacity-50 {
     opacity: 50%;
+}
+
+.cool-card {
+    border-color: #3E444A !important;
+    background-color: transparent;
+    border-width: 1px;
+    transition : all 500ms ease-out;
+}
+
+.cool-card:hover {
+    box-shadow:0 1rem 2rem rgba(0, 0, 0, .2) !important;
+    border-color: #2b579a !important;
+    border-width: 1px;
+    cursor: pointer;
+}
+
+.cool-table {
+    border-color: #3E444A !important;
+    background-color: transparent;
+    border-width: 1px;
+    transition : all 500ms ease-out;
+}
+
+.cool-table:hover {
+    /*box-shadow:0 1rem 2rem rgba(0, 0, 0, .2) !important;*/
+    border-color: #2b579a !important;
+    border-width: 1px;
+    /*cursor: pointer;*/
+}
+
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-columns {
+        column-count: 4;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 5;
+    }
+}
+
+img{
+    object-fit: contain;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
 }

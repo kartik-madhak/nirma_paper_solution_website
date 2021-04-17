@@ -36,12 +36,13 @@
                                 style="text-decoration: none">Delete
                         </button>
                     </form>
-                    <button  class="btn btn-link text-white-50"
-                             style="text-decoration: none"
-                             onclick="prompt('Press Ctrl + C, then Enter to copy to clipboard',
-                                 '{{url()->current() . '#' . $answer->id}}')">Share</button>
 
                 @endif
+                <button class="btn btn-link text-white-50"
+                        style="text-decoration: none"
+                        onclick="prompt('Press Ctrl + C, then Enter to copy to clipboard',
+                            '{{url()->current() . '#' . $answer->id}}')">Share
+                </button>
 
             </div>
 

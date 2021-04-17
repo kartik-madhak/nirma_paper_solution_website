@@ -15,14 +15,8 @@ class AdminController extends Controller
         $count['id']=1;
         foreach($users as $user)
         {
-
             $cc[$user->name]=count($user->answers);
-
         }
-
-//        dd();
-
-
 
         $chart_options = [
             'chart_title' => 'Users by months',

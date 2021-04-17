@@ -10,7 +10,7 @@
 
 
 
-    <div class="container text-dark">
+    <div class="container text-light">
         <div class="row justify-content-center">
             <div class="col-md-8 d-inline-flex">
                 <div class="card bg-white">
@@ -18,7 +18,7 @@
 
                     <div class="card-body text-light" >
 {{--                        {{dd($chart1)}}--}}
-                        <h1 class="text-dark">{{ $chart1->options['chart_title'] }}</h1>
+                        <h1 class="text-light">{{ $chart1->options['chart_title'] }}</h1>
                         {!! $chart1->renderHtml() !!}
 
                     </div>

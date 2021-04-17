@@ -55,14 +55,17 @@
             <div class="col-md-8" style="font-size: 14px;">
                 <div class="ml-4" id="accordion">
                     @forelse($answers as $answer)
-                        <div class="card">
+                        <div class="card cool-card mt-2 p-1">
                             <div class="card-header">
                                 Answer written at {{$answer->created_at}}
-                                <button class="btn btn-link" data-toggle="collapse"
-                                        data-target="#Collapse{{$answer->id}}">
-                                    Show answer
-                                </button>
-                                <a href="/question-paper/{{$answer->question_paper_id}}/answer/{{$answer->question_number}}/{{$answer->sub_question_character}}#{{$answer->id}}">Go to actual answer</a>
+                                <a class="stretched-link" data-toggle="collapse"
+                                   data-target="#Collapse{{$answer->id}}">
+                                </a>
+                                <div class="float-right" style="z-index: 1; position: relative">
+                                    <a class="btn btn-outline-primary" href="/question-paper/{{$answer->question_paper_id}}/answer/{{$answer->question_number}}/{{$answer->sub_question_character}}#{{$answer->id}}"
+
+                                    >Go to answer</a>
+                                </div>
                             </div>
                             <div id="Collapse{{$answer->id}}" class="collapse" aria-labelledby="headingOne"
                                  data-parent="#accordion">

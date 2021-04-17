@@ -46,7 +46,7 @@
             evt.editor.dataProcessor.htmlFilter.addRules( {
                 elements: {
                     img: function(el) {
-                        el.addClass('img-thumbnail');
+                        // el.addClass('img-fluid');
                     }
                 }
             });
