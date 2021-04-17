@@ -51,8 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
-    public  function  answers()
+
+    public function getLikes()
     {
-        return $this->hasMany(Answer::class);
+        return Answer::query()->where('user_id', auth()->user()->id)->sum('likes');
     }
 }

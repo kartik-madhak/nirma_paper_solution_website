@@ -51,7 +51,7 @@ Route::post('/answer/{answer}/like', [\App\Http\Controllers\LikeController::clas
 
 //Feedback Form
 Route::get('/contact',function(){
-    return view('contact', compact('likes'));
+    return view('contact');
 });
 
 //Email
