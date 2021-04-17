@@ -1,30 +1,57 @@
 @extends('layouts.app')
+{{--@section('head')--}}
+
+{{--     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>--}}
+
+
+
+{{--@endsection--}}
 @section('content')
 
 
-<div class="container-fluid text-light">
-    <h2 >Site Activity</h2>
-    <h2 >Users Logged In </h2>
 
-    <div class="table-responsive col-lg-6   mb-3">
+    <div class="container text-dark">
+        <div class="row justify-content-center">
+            <div class="col-md-8 d-inline-flex">
+                <div class="card bg-white">
+                    <div class="card-header">Dashboard</div>
 
-        <table id="data-table" class="display table table-striped table-dark table-hover text-center">
-            <thead>
-            <th>
-                Username
-            </th>
-            <th>First time login date</th>
+                    <div class="card-body text-light" >
+{{--                        {{dd($chart1)}}--}}
+                        <h1 class="text-dark">{{ $chart1->options['chart_title'] }}</h1>
+                        {!! $chart1->renderHtml() !!}
 
-            </thead>
-            <tbody>
-            @foreach($users as $user)
-                <tr>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->created_at->toDateString()}}</td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
+                    </div>
+
+                </div>
+                <div class="card bg-white">
+                    <div class="card-header">Dashboard</div>
+
+                    <div class="card-body text-light" >
+
+                        <h1>{{ $chart1->options['chart_title'] }}</h1>
+                        {!! $chart1->renderHtml() !!}
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
     </div>
 
+
+    <div class="container-fluid text-light">
+        @foreach($users as $user)
+            {{$user->name}}
+            {{$cc[$user->name]}}
+        @endforeach
+    </div>
+    {!! $chart1->renderChartJsLibrary() !!}
+    {!! $chart1->renderJs() !!}
+
+
 @endsection
+
