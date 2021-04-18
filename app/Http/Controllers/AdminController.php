@@ -11,18 +11,12 @@ class AdminController extends Controller
     //
     public  function  index()
     {
-//        $users=User::all();
-//        $count['id']=1;
-//        foreach($users as $user)
-//        {
-//
-//            $cc[$user->name]=count($user->answers);
-//
-//        }
-
-//        dd();
-
-
+        $users=User::all();
+        $count['id']=1;
+        foreach($users as $user)
+        {
+            $cc[$user->name]=count($user->answers);
+        }
 
         $chart_options = [
             'chart_title' => 'Users by months',
@@ -39,6 +33,6 @@ class AdminController extends Controller
         }
 
 //        dd($chart1->renderHtml());
-        return view('admin.index',compact('chart1'));
+        return view('admin.index',compact('users','chart1','cc'));
     }
 }

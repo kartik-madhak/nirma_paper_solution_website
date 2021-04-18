@@ -4,10 +4,10 @@
 
     <div class="container-fluid">
         <div class="row mt-3">
-            <div class="col-3 text-center">
-                <table class="table table-dark table-striped">
+            <div class="col-lg-3 text-center">
+                <table class="table table-dark border cool-table">
                     <thead>
-                    <th>
+                    <th class="border-primary">
                         Users online in the last 1 minute
                     </th>
                     </thead>
@@ -20,10 +20,10 @@
                     @endforeach
                 </table>
             </div>
-            <div class="text-center col">
+            <div class="text-center col-lg-9">
 
                 <div class="active-cyan-4 mb-3">
-                    <form action="">
+                    <form>
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="search" placeholder="Search"
                                    value="{{$search}}">
@@ -34,37 +34,51 @@
                     </form>
                 </div>
 
-                <div class="table-responsive">
 
-                    <table id="data-table" class="display table table-striped table-dark table-hover">
-                        <thead>
-                        <tr>
-                            <th>Link</th>
-                            <th>Paper Name</th>
-                            <th>Answers Link</th>
-                            <th>Course Name</th>
-                            <th>Course Code</th>
-                            <th>Paper Year</th>
+                <div class="card-columns">
+                    @foreach($papers as $paper)
+                        @include('layouts.questionPaperCard')
+                        {{--                    <tr>--}}
+                        {{--                        <td><a href="{{$paper->url}}">Download here</a></td>--}}
+                        {{--                        <td>{{$paper->paper_name}}</td>--}}
+                        {{--                        <td><a href="/question-paper/{{$paper->id}}">Answers</a></td>--}}
+                        {{--                        <td>{{$paper->name}}</td>--}}
+                        {{--                        <td>{{$paper->code}}</td>--}}
+                        {{--                        <td>{{$paper->year}}</td>--}}
+                        {{--                    </tr>--}}
+                    @endforeach
+                </div>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($papers as $paper)
-                            <tr>
-                                <td><a href="{{$paper->url}}">Download here</a></td>
-                                <td>{{$paper->paper_name}}</td>
-                                <td><a href="/question-paper/{{$paper->id}}">Answers</a></td>
-                                <td>{{$paper->name}}</td>
-                                <td>{{$paper->code}}</td>
-                                <td>{{$paper->year}}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
+                {{--                <div class="table-responsive">--}}
+                {{--                    <table id="data-table" class="display table table-striped table-dark table-hover">--}}
+                {{--                        <thead>--}}
+                {{--                        <tr>--}}
+                {{--                            <th>Link</th>--}}
+                {{--                            <th>Paper Name</th>--}}
+                {{--                            <th>Answers Link</th>--}}
+                {{--                            <th>Course Name</th>--}}
+                {{--                            <th>Course Code</th>--}}
+                {{--                            <th>Paper Year</th>--}}
 
-                    </table>
-                    <div class="text-center d-inline-flex">
-                        {{ $papers->links() }}
-                    </div>
+                {{--                        </tr>--}}
+                {{--                        </thead>--}}
+                {{--                        <tbody>--}}
+                {{--                        @foreach($papers as $paper)--}}
+                {{--                            <tr>--}}
+                {{--                                <td><a href="{{$paper->url}}">Download here</a></td>--}}
+                {{--                                <td>{{$paper->paper_name}}</td>--}}
+                {{--                                <td><a href="/question-paper/{{$paper->id}}">Answers</a></td>--}}
+                {{--                                <td>{{$paper->name}}</td>--}}
+                {{--                                <td>{{$paper->code}}</td>--}}
+                {{--                                <td>{{$paper->year}}</td>--}}
+                {{--                            </tr>--}}
+                {{--                        @endforeach--}}
+                {{--                        </tbody>--}}
+
+                {{--                    </table>--}}
+                {{--                </div>--}}
+                <div class="text-center d-inline-flex mt-2">
+                    {{ $papers->links() }}
                 </div>
             </div>
         </div>

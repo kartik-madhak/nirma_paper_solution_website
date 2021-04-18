@@ -114,7 +114,7 @@ class AnswerController extends Controller
             'question_number',
             'sub_question_character'
         )->groupBy('question_number', 'sub_question_character')->get();
-        return view('answer.show', compact('answers', 'answers_number_and_char', 'questionPaper', 'user'));
+        return view('answer.show', compact('answers', 'answers_number_and_char', 'questionPaper', 'user', 'question_char', 'question_no'));
     }
 
     public function edit(Request $request, Answer $answer)
@@ -136,6 +136,8 @@ class AnswerController extends Controller
 
     public function showEditForm(Answer $answer)
     {
+        if($answer->user_id != auth()->user()->id)
+            abort(404);
         return view('answer.update', compact('answer'));
     }
 
