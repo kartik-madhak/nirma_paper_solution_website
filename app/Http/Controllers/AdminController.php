@@ -11,14 +11,14 @@ class AdminController extends Controller
     //
     public  function  index()
     {
-        $users=User::all();
-        $count['id']=1;
-        foreach($users as $user)
-        {
-
-            $cc[$user->name]=count($user->answers);
-
-        }
+//        $users=User::all();
+//        $count['id']=1;
+//        foreach($users as $user)
+//        {
+//
+//            $cc[$user->name]=count($user->answers);
+//
+//        }
 
 //        dd();
 
@@ -39,6 +39,6 @@ class AdminController extends Controller
         }
 
 //        dd($chart1->renderHtml());
-        return view('admin.index',compact('users','chart1','cc'));
+        return view('admin.index',compact('chart1'));
     }
 }
